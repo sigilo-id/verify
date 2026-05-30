@@ -1,0 +1,46 @@
+name: CodeQL
+
+# GitHub's free static analysis. Catches common security issues:
+# injection vulnerabilities, hardcoded credentials, unsafe deserialization,
+# and the broader CWE top 25. Runs weekly and on every push to main.
+#
+# Results appear under the Security tab in the GitHub repo. For a
+# security-positioned package, public CodeQL results are a credibility
+# signal: anyone evaluating the package can see we run automated analysis
+# and what it finds.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Sunday at 09:00 UTC — catches new advisories that landed during the
+    # week without us pushing code.
+    - cron: "0 9 * * 0"
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    name: Analyze JavaScript/TypeScript
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+          queries: security-extended,security-and-quality
+
+      - name: Perform analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:javascript-typescript"

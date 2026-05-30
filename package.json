@@ -1,0 +1,77 @@
+{
+  "name": "@sigilo/verify",
+  "version": "0.0.2",
+  "description": "Sigilo — privacy-preserving age verification. Relying-party SDK. Proof in confidence.",
+  "keywords": [
+    "age-verification",
+    "zero-knowledge",
+    "verifiable-credentials",
+    "openid4vp",
+    "privacy",
+    "compliance",
+    "online-safety-act",
+    "eidas",
+    "kyc"
+  ],
+  "homepage": "https://sigilo.id",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sigilo/verify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sigilo/verify/issues",
+    "email": "security@sigilo.id"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Sigilo, Ltd.",
+    "email": "engineering@sigilo.id",
+    "url": "https://sigilo.id"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "examples",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md",
+    "THREAT_MODEL.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "build:test": "tsc -p tsconfig.json",
+    "test": "npm run build:test && node --test dist/**/*.test.js",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run typecheck && npm run test && npm run clean && npm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0",
+    "eslint": "^8.57.0"
+  }
+}

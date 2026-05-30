@@ -1,0 +1,71 @@
+name: Publish to npm
+
+# Publishes the package to npm with cryptographic provenance attestation.
+#
+# Triggered by:
+#   - Creating a GitHub Release (recommended path — the release notes go to
+#     the world along with the published package)
+#   - Manual dispatch via the Actions tab (for emergency patches)
+#
+# Requires the NPM_TOKEN secret to be configured:
+#   Settings → Secrets and variables → Actions → New repository secret
+#   Use a granular access token from npmjs.com with read+write on @sigilo/*
+#
+# Provenance is the value-add of publishing from CI vs. publishing from a
+# laptop. The `id-token: write` permission is what makes it work — without
+# it, the publish succeeds but no attestation is created, and the verified
+# badge does not appear on npmjs.com. Every version published via this
+# workflow will have a clickable trust chain on its npm page.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Reason for manual dispatch (e.g. emergency patch)"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  id-token: write   # required for npm provenance
+
+jobs:
+  publish:
+    name: Publish @sigilo/verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Full history so npm can record the exact source commit.
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+          cache: "npm"
+
+      - name: Install dependencies
+        # npm ci is stricter than npm install — it fails if the lockfile is
+        # out of date, preventing accidental dependency drift in CI.
+        run: npm ci
+
+      - name: Run prepublish gate (typecheck + tests + build)
+        run: npm run prepublishOnly
+
+      - name: Publish to npm with provenance
+        run: npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Report published version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "::notice title=Published::@sigilo/verify@$VERSION is now live on npm with provenance"
+          echo "::notice title=View::https://www.npmjs.com/package/@sigilo/verify/v/$VERSION"

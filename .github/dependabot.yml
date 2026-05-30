@@ -1,0 +1,47 @@
+# Dependabot keeps dependencies current and opens PRs automatically when
+# security advisories affect anything we use. For a security-positioned
+# package this is essential — a stale transitive dependency with a known
+# CVE is the single most common way real packages get compromised.
+#
+# Reviewing the Dependabot PRs takes about 5 minutes per week.
+
+version: 2
+updates:
+  # npm dependencies — devDependencies only, since we have no runtime deps.
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/London"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "sigiloadmin"
+    labels:
+      - "dependencies"
+    commit-message:
+      prefix: "deps"
+      prefix-development: "deps-dev"
+      include: "scope"
+    groups:
+      # Group all minor + patch updates into one PR per week to reduce noise.
+      # Major version bumps still get their own PR for individual review.
+      dev-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # GitHub Actions versions — pin and update the actions/* dependencies.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "ci"
+      include: "scope"

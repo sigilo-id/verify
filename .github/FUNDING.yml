@@ -1,0 +1,8 @@
+# This file controls the "Sponsor" button on the repository.
+# For now we are not accepting financial sponsorship; commercial customers
+# should reach out at partners@sigilo.id.
+#
+# Uncomment and configure when ready:
+#
+# github: [sigilo]
+# custom: ["https://sigilo.id/partners"]

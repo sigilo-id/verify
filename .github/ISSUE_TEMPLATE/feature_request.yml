@@ -1,0 +1,56 @@
+name: Feature request
+description: Suggest a capability the SDK should have.
+title: "[Feature] "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest a feature.
+
+        Before filing, please check that this isn't already in the [roadmap](https://sigilo.id/roadmap) or in CHANGELOG.md under `[Unreleased]`.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Describe the use case in your own words, not the solution you have in mind. We'll help find the right solution together.
+      placeholder: I'm building X and I need to do Y, but the current API only lets me do Z.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: If you have an idea for the API or behaviour, describe it. Code samples welcome.
+      render: typescript
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you've considered
+      description: Other approaches you've thought about and why they don't fit.
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      description: Which part of the SDK would this touch?
+      options:
+        - Client SDK (`@sigilo/verify`)
+        - Server verifier (`@sigilo/verify/server`)
+        - Types
+        - Documentation
+        - Build / release infrastructure
+        - Not sure
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I'd be willing to submit a PR for this if accepted
+        - label: I'd like to discuss the design first

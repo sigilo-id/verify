@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔒 Security vulnerability
+    url: https://github.com/sigilo.id/verify/security/advisories/new
+    about: Report security vulnerabilities privately. Do NOT open a public issue.
+  - name: 💬 General questions
+    url: https://github.com/sigilo.id/verify/discussions
+    about: For questions, ideas, and conversations that aren't bugs or feature requests.
+  - name: 📚 Documentation
+    url: https://docs.sigilo.id
+    about: Integration guides, API reference, threat model. Check here first.

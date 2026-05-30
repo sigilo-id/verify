@@ -1,0 +1,28 @@
+# Exclude tests from the published artifact
+src/**/*.test.ts
+src/**/*.test.js
+dist/**/*.test.js
+dist/**/*.test.d.ts
+dist/**/*.test.js.map
+dist/**/*.test.d.ts.map
+
+# Exclude dev configs
+tsconfig.build.json
+.eslintrc*
+.prettierrc*
+*.log
+
+# Exclude repo-config files (these belong on GitHub, not in npm subscribers' node_modules)
+.github/
+.gitignore
+CONTRIBUTING.md
+
+# Exclude IDE / OS clutter
+.vscode/
+.idea/
+.DS_Store
+node_modules/
+
+# Keep examples for documentation, but exclude their lockfiles
+examples/**/node_modules
+examples/**/package-lock.json

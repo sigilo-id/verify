@@ -1,0 +1,24 @@
+# CODEOWNERS — automatic reviewer assignment for PRs.
+#
+# When you grow beyond a solo team, this file is what enforces "the
+# cryptographer reviews crypto changes." For now it's set to the org
+# admin for all files; update as you hire.
+#
+# Syntax: <file pattern>  <github usernames or teams>
+# Documentation: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default reviewer for everything.
+*                            @sigiloadmin
+
+# When you hire a cryptographer, change this line to their handle so any
+# touch to the proof handling forces their review:
+# /src/server.ts             @cryptographer-handle
+# /src/types.ts              @cryptographer-handle
+
+# When you hire a policy/regulatory lead, give them ownership of the
+# documents that are regulator-facing:
+# /THREAT_MODEL.md           @policy-handle
+# /SECURITY.md               @policy-handle
+
+# Workflow changes need infrastructure review.
+/.github/workflows/          @sigiloadmin

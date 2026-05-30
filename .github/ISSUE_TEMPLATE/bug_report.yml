@@ -1,0 +1,74 @@
+name: Bug report
+description: Something in @sigilo/verify doesn't work as documented.
+title: "[Bug] "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug.
+
+        **Before filing:** if this is a security vulnerability, please **do not**
+        open a public issue. Email security@sigilo.id or open a private security
+        advisory at https://github.com/sigilo.id/verify/security/advisories/new
+
+  - type: input
+    id: version
+    attributes:
+      label: Package version
+      description: The version of `@sigilo/verify` you're using
+      placeholder: "0.0.1"
+    validations:
+      required: true
+
+  - type: input
+    id: node
+    attributes:
+      label: Node.js version
+      description: Output of `node --version`
+      placeholder: "v20.x.x"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      multiple: true
+      options:
+        - Browser (which?)
+        - Node.js server
+        - React Native
+        - Other (please describe)
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+      placeholder: When I called `sigilo.verify()`, I expected…
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: What actually happened?
+      description: Include the full error message and stack trace if possible. Redact any PII.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Smallest code snippet that reproduces the issue. A link to a runnable repo is best.
+      render: typescript
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional context
+      description: Anything else that might help us understand the issue.

@@ -16,10 +16,10 @@
   "homepage": "https://sigilo.id",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sigilo/verify.git"
+    "url": "git+https://github.com/sigilo-id/verify.git"
   },
   "bugs": {
-    "url": "https://github.com/sigilo/verify/issues",
+    "url": "https://github.com/sigilo-id/verify/issues",
     "email": "security@sigilo.id"
   },
   "license": "Apache-2.0",

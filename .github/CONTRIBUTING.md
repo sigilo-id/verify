@@ -41,7 +41,7 @@ We will not accept:
 
 ```sh
 # Clone
-git clone git@github.com:sigilo.id/verify.git
+git clone git@github.com:sigilo-id/verify.git
 cd verify
 
 # Install

@@ -45,4 +45,4 @@ Otherwise delete it. -->
 
 <!-- If this PR fixes a vulnerability, do NOT describe the vulnerability
 in this PR description until a fix is released. Open a private security
-advisory instead: github.com/sigilo.id/verify/security/advisories/new -->
+advisory instead: github.com/sigilo-id/verify/security/advisories/new -->

@@ -49,10 +49,9 @@ jobs:
         run: npm run build
 
       - name: Verify package contents
-        # Sanity check — no test files or dev configs should appear in the
-        # tarball. If this changes silently it means someone added a file
-        # that shouldn't ship.
         run: |
+          rm -rf dist
+          npm run build
           npm pack --dry-run --json > /tmp/pack.json
           node -e "
             const data = JSON.parse(require('fs').readFileSync('/tmp/pack.json'));

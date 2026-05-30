@@ -55,7 +55,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "build:test": "tsc -p tsconfig.json",
-    "test": "npm run build:test && node --test dist/",
+    "test": "npm run build:test && node --test dist/index.test.js dist/server.test.js",
     "lint": "eslint src --ext .ts",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "clean": "rm -rf dist",

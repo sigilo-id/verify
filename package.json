@@ -16,10 +16,10 @@
   "homepage": "https://sigilo.id",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sigilo/verify.git"
+    "url": "git+https://github.com/sigilo-id/verify.git"
   },
   "bugs": {
-    "url": "https://github.com/sigilo/verify/issues",
+    "url": "https://github.com/sigilo-id/verify/issues",
     "email": "security@sigilo.id"
   },
   "license": "Apache-2.0",
@@ -55,7 +55,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "build:test": "tsc -p tsconfig.json",
-    "test": "npm run build:test && node --test dist/**/*.test.js",
+    "test": "npm run build:test && node --test dist/index.test.js dist/server.test.js",
     "lint": "eslint src --ext .ts",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "clean": "rm -rf dist",
